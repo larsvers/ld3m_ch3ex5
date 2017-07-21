@@ -4,13 +4,6 @@
 <title>chapter 3 example 5</title>
 <meta charset="utf-8">
 
-
-<!-- <script src="../../libs/d3.js"></script> -->
-<!-- <script src="../../libs/topojson.v1.min.js"></script> -->
-<!-- <script src="../../libs/d3-array.js"></script> -->
-<!-- <script src="../../libs/d3-geo.js"></script> -->
-<!-- <script src="../../libs/d3-scale-chromatic.min.js"></script> -->
-
 <script src="//d3js.org/d3.v4.js"></script>
 <script src="//d3js.org/topojson.v1.min.js"></script>
 <script src="//d3js.org/d3-color.v1.min.js"></script> <!-- recommended -->
@@ -558,8 +551,8 @@ function ready(error, world, forests) {
 /* ================== */
 
 d3.queue()
-  .defer(d3.json, '../../data/world/world-110.json')
-  .defer(d3.csv, '../../data/forests/forests.csv')
+  .defer(d3.json, 'data/world-110.json')
+  .defer(d3.csv, 'data/forests.csv')
   .await(ready);
 
 

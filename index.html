@@ -290,8 +290,8 @@ function ready(error, world, forests) {
     return d3.ascending(a.properties.admin, b.properties.admin);
   });
 
-  console.log(countries);
-  console.log(forests);
+  console.log('countries', countries);
+  console.log('forests', forests);
 
   insertForestDataBinary(); // ~ 1 ms
   // insertForestDataLinear(); // ~ 5 ms

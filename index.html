@@ -376,13 +376,17 @@ function ready(error, world, forests) {
       projection.scale(projectionScale);
       prevTransformScale = transformScale;
 
-    } else { // if the user pans (NOT using the mousewheel or equivalent)
+    } else if (event === 'mousemove') { // if the user pans
 
       // Change the rotation according to the user interaction
       var r = projection.rotate();
       rotation = [r[0] + dx * 0.4, r[1] - dy * 0.5, r[2]];
       projection.rotate(rotation);
 
+    } else { // fallback
+
+      console.warn('invalid mouse event in zoomed()');
+    
     }
 
     // Rerender the globe

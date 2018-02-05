@@ -4,7 +4,7 @@
 <title>10 Canvas interact - example 4</title>
 <meta charset="utf-8">
 
-<script src="//d3js.org/d3.v4.min.js"></script>
+<script src="//d3js.org/d3.v5.min.js"></script>
 <script src="//d3js.org/topojson.v1.min.js"></script>
 <script src="//d3js.org/d3-color.v1.min.js"></script> <!-- recommended -->
 <script src="//d3js.org/d3-interpolate.v1.min.js"></script> <!-- recommended -->
@@ -260,9 +260,7 @@ function drawHiddenCanvas(world) {
 /* Main drawing function */
 /* ===================== */
 
-function ready(error, world, forests) {
-  if (error) throw error;
-
+function ready(world, forests) {
 
   /* Data preparation */
   /* ---------------- */
@@ -600,12 +598,18 @@ function ready(error, world, forests) {
 /* Data load and init */
 /* ================== */
 
-d3.queue()
-  .defer(d3.json, 'data/world-110.json')
-  .defer(d3.csv, 'data/forests.csv')
-  .await(ready);
 
+var worldData = d3.json('data/world-110.json').then(function(world) { return world; })
+var forestData = d3.csv('data/forests.csv').then(function(forests) { return forests; })
 
+Promise.all([worldData, forestData]).then(function(response) {
+
+  var worldResolved = response[0];
+  var forestsResolved = response[1];
+
+  ready(worldResolved, forestsResolved);
+
+});
 
 
 </script>
